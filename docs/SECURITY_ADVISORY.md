@@ -3,45 +3,56 @@
 ## Date: 2026-02-02
 
 ## Summary
-Updated Next.js from version 14.0.4 to 15.0.8 to address multiple security vulnerabilities.
+Updated Next.js from version 14.0.4 to 15.2.3 to address multiple critical security vulnerabilities.
 
 ## Vulnerabilities Fixed
 
-### 1. DoS with Server Components (Multiple CVEs)
+### 1. DoS via Cache Poisoning (Latest)
+- **Severity**: High
+- **Affected versions**: >= 15.0.4-canary.51, < 15.1.8
+- **Patched version**: 15.2.3
+- **Description**: Next.js vulnerability can lead to DoS via cache poisoning
+
+### 2. Authorization Bypass in Middleware (Critical)
+- **Severity**: Critical
+- **Affected versions**: >= 15.0.0, < 15.2.3
+- **Patched version**: 15.2.3
+- **Description**: Authorization bypass vulnerability in Next.js Middleware across multiple version ranges
+
+### 3. DoS with Server Components (Multiple CVEs)
 - **Severity**: High
 - **Affected versions**: >= 13.0.0, < 15.0.8
-- **Patched version**: 15.0.8
+- **Patched version**: 15.2.3
 - **Description**: HTTP request deserialization can lead to Denial of Service when using insecure React Server Components
 
-### 2. Authorization Bypass in Middleware
-- **Severity**: High
-- **Affected versions**: >= 13.0.0, < 13.5.9 and >= 14.0.0, < 14.2.25 and >= 15.0.0, < 15.2.3
-- **Patched version**: 15.0.8+ (addresses the 15.x range)
-- **Description**: Authorization bypass vulnerability in Next.js Middleware
-
-### 3. Cache Poisoning
+### 4. Cache Poisoning (Previous)
 - **Severity**: Medium
 - **Affected versions**: >= 14.0.0, < 14.2.10
-- **Patched version**: 15.0.8
+- **Patched version**: 15.2.3
 - **Description**: Next.js Cache Poisoning vulnerability
 
-### 4. Server-Side Request Forgery (SSRF)
+### 5. Server-Side Request Forgery (SSRF)
 - **Severity**: High
 - **Affected versions**: >= 13.4.0, < 14.1.1
-- **Patched version**: 15.0.8
+- **Patched version**: 15.2.3
 - **Description**: SSRF vulnerability in Server Actions
 
-### 5. Authorization Bypass
+### 6. Authorization Bypass (General)
 - **Severity**: Critical
 - **Affected versions**: >= 9.5.5, < 14.2.15
-- **Patched version**: 15.0.8
+- **Patched version**: 15.2.3
 - **Description**: Authorization bypass vulnerability
 
 ## Changes Made
 
 ### Updated Dependencies
-- `next`: 14.0.4 → **15.0.8**
-- `eslint-config-next`: 14.0.4 → **15.0.8**
+- `next`: 14.0.4 → **15.2.3**
+- `eslint-config-next`: 14.0.4 → **15.2.3**
+
+### Version History
+- Initial: 14.0.4 (vulnerable)
+- First update: 15.0.8 (still had vulnerabilities)
+- Final update: **15.2.3** (all known vulnerabilities fixed)
 
 ## Impact Assessment
 
@@ -109,8 +120,21 @@ Verify the fix by checking the installed version:
 ```bash
 cd webapp
 npm list next
-# Should show: next@15.0.8
+# Should show: next@15.2.3
 ```
+
+## Additional Notes
+
+### Why 15.2.3?
+This version addresses:
+- ✅ Cache poisoning DoS (fixed in 15.1.8)
+- ✅ Authorization bypass in Middleware (fixed in 15.2.3)
+- ✅ All previous vulnerabilities from 14.x and earlier
+
+### Migration Path
+- 14.0.4 (initial, multiple critical vulnerabilities)
+- 15.0.8 (first attempt, still had vulnerabilities)
+- **15.2.3** (final, all known vulnerabilities fixed)
 
 ## References
 
@@ -137,4 +161,5 @@ For questions or concerns about this security update, please open an issue in th
 
 **Status**: ✅ Fixed  
 **Updated by**: GitHub Copilot Agent  
-**Version**: Next.js 15.0.8
+**Final Version**: Next.js 15.2.3  
+**All Known Vulnerabilities**: Addressed ✅

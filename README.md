@@ -2,6 +2,8 @@
 
 Azure AI Foundry Agent と MCP (Model Context Protocol) を使用したクラウド完結型ハンズオン実装です。
 
+> **🔒 Security Update**: このプロジェクトは Next.js 15.0.8 を使用しており、すべての既知の重大な脆弱性が修正されています。詳細は [SECURITY_ADVISORY.md](docs/SECURITY_ADVISORY.md) を参照してください。
+
 ## 概要
 
 このプロジェクトは、ユーザー識別子（Azure AD の `oid`）を使用してMCP機能をフィルタリングする Flow① を実装します。
